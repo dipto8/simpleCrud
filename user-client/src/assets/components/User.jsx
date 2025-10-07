@@ -1,4 +1,4 @@
-import { NavLink, useLoaderData } from "react-router-dom";
+import { Link, NavLink, useLoaderData } from "react-router-dom";
 import { MdDeleteForever } from "react-icons/md";
 import { HiPencil } from "react-icons/hi2";
 import Swal from "sweetalert2";
@@ -47,7 +47,9 @@ function User() {
       <h1 className="text-2xl text-center underline font-bold text-lime-500 mt-4">
         Total users : {loadedUsers.length}
       </h1>
-      <div className=""><NavLink to='/'>add Users</NavLink></div>
+      <div className="">
+        <NavLink to="/">add Users</NavLink>
+      </div>
       <div className="overflow-x-auto p-16">
         <table className="table table-zebra ">
           {/* head */}
@@ -76,9 +78,13 @@ function User() {
                   >
                     <MdDeleteForever />
                   </button>
-                  <button className="text-xl btn">
-                    <HiPencil />
-                  </button>
+            
+                    <Link to={`/users/update/${user._id}`}>
+                      <button className="text-xl btn">
+                        <HiPencil />
+                      </button>
+                    </Link>
+              
                 </td>
               </tr>
             ))}

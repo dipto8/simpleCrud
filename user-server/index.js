@@ -36,11 +36,11 @@ async function run() {
         await client.connect();
 
         const userCollection = client.db('User_Management_DB').collection('Users');
-        
-        
 
 
-        app.get('/users',async(req,res)=>{
+
+
+        app.get('/users', async (req, res) => {
             const cursor = userCollection.find();
             const result = await cursor.toArray();
             res.send(result);
@@ -58,9 +58,19 @@ async function run() {
 
         })
 
-        app.delete('/users/:id',async(req,res)=>{
+        app.put('/users/:id', async (req, res) => {
             const id = req.params.id;
-            const querry = {_id: new ObjectId(id)};
+            const querry = { _id: new ObjectId(id) }
+            const options = { upsert: true };
+            const updateUser = req.body;
+            const result = await userCollection.updateOne(querry, updateDoc, options);
+            res.send(result);
+
+        })
+
+        app.delete('/users/:id', async (req, res) => {
+            const id = req.params.id;
+            const querry = { _id: new ObjectId(id) };
             const result = await userCollection.deleteOne(querry);
             res.send(result);
             console.log(result)
