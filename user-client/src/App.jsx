@@ -46,7 +46,7 @@ function App() {
       </div>
 
       <div className="">
-        <NavLink to='/'>view Users</NavLink>
+        <NavLink to='/users'>view Users</NavLink>
       </div>
 
       <div className=" p-16  border-red-600">
